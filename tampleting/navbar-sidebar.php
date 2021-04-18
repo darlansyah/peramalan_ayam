@@ -46,10 +46,10 @@
 				<nav>
 					<ul class="nav">
 						<li><a href="../dashboard/" <?php if ($a_dashboard) { ?> class="active" <?php	} ?>><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-						<li><a href="../ayam/" <?php if ($a_ayam) { ?> class="active" <?php	} ?>><i class="lnr lnr-home"></i> <span>Ayam</span></a></li>
-						<li><a href="../rekap/" <?php if ($a_rekap) { ?> class="active" <?php	} ?>><i class="lnr lnr-home"></i> <span>Rekap</span></a></li>
-						<li><a href="../peramalan/" <?php if ($a_peramalan) { ?> class="active" <?php	} ?>><i class="lnr lnr-home"></i> <span>Peramalan</span></a></li>
-						<li><a href="../akun/" <?php if ($a_akun) { ?> class="active" <?php	} ?>><i class="lnr lnr-home"></i> <span>Akun</span></a></li>
+						<li><a href="../ayam/" <?php if ($a_ayam) { ?> class="active" <?php	} ?>><i class="lnr lnr-dice"></i> <span>Ayam</span></a></li>
+						<li><a href="../rekap/" <?php if ($a_rekap) { ?> class="active" <?php	} ?>><i class="fa fa-database"></i> <span>Rekap</span></a></li>
+						<li><a href="../peramalan/" <?php if ($a_peramalan) { ?> class="active" <?php	} ?>><i class="fa fa-line-chart"></i> <span>Peramalan</span></a></li>
+						<li><a href="../akun/" <?php if ($a_akun) { ?> class="active" <?php	} ?>><i class="lnr lnr-user"></i> <span>Akun</span></a></li>
 					</ul>
 				</nav>
 			</div>

@@ -23,17 +23,41 @@ function tampil($query)
 
 
 // akun------------------------>
-function akun_tambah()
+function akun_tambah($data)
 {
-  return 'akun_tambah';
+  global $link;
+  $nama = $data['nama'];
+  $username = $data['username'];
+  $password = $data['password'];
+  $level = $data['level'];
+
+  mysqli_query($link, "INSERT INTO akun VALUES ('','$nama','$username','$password','$level','','')");
+  return mysqli_affected_rows($link);
 }
-function akun_update()
+function akun_update($data)
 {
-  return 'akun_update';
+  global $link;
+  $id = $data['id_akun'];
+  $nama = $data['nama'];
+  $username = $data['username'];
+  $password = $data['password'];
+  $level = $data['level'];
+
+  mysqli_query($link, " UPDATE akun SET
+                  nama = '$nama',
+                  username = '$username',
+                  password = '$password',
+                  level = '$level'
+                  WHERE id = '$id'");
+
+  return mysqli_affected_rows($link);
 }
-function akun_hapus()
+function akun_hapus($data)
 {
-  return 'akun_hapus';
+  global $link;
+  $id = $data['id_akun'];
+  mysqli_query($link, "DELETE FROM akun WHERE id = $id");
+  return mysqli_affected_rows($link);
 }
 // end akun<------------------------
 
@@ -48,8 +72,6 @@ function ayam_tambah($data)
 }
 function ayam_update($data)
 {
-  // var_dump($data);
-  // die;
   global $link;
   $id = $data['id_ayam'];
   $ayam = $data['ayam'];
@@ -74,6 +96,8 @@ function ayam_hapus($data)
 // rekap------------------------>
 function rekap_tambah()
 {
+  //   SELECT tanggal, SUM(jumlah) AS jumlah FROM `rekap`
+  // GROUP BY YEARWEEK(tanggal)
   return 'rekap_tambah';
 }
 function rekap_update()
