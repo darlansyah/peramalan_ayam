@@ -94,80 +94,40 @@ function ayam_hapus($data)
 
 
 // rekap------------------------>
-function rekap_tambah()
-{
-  //   SELECT tanggal, SUM(jumlah) AS jumlah FROM `rekap`
-  // GROUP BY YEARWEEK(tanggal)
-  return 'rekap_tambah';
-}
-function rekap_update()
-{
-  return 'rekap_update';
-}
-function rekap_hapus()
-{
-  return 'rekap_hapus';
-}
-// end rekap<------------------------
-
-
-
-
-
-
-// CRUD---------------------------->
-function tambah_kategori($data)
+function rekap_tambah($data)
 {
   global $link;
-  $nama = $data['kategori'];
+  $id = $data['id_ayam'];
+  $tanggal = $data['tanggal'];
+  $jumlah = $data['jumlah'];
 
-  // cek data kategori
-  $cek_data = tampil("SELECT * FROM kategori WHERE nama = '$nama'");
-  if (!empty($cek_data)) {
-    echo "<script>
-     alert('Data Nama Kategori Sudah Ada');
-     document.location.href = 'index.php';
-    </script>
-    ";
-    return false;
-  }
-  mysqli_query($link, "INSERT INTO kategori VALUES ('','$nama')");
+  mysqli_query($link, "INSERT INTO rekap VALUES ('','$id','$tanggal','$jumlah')");
   return mysqli_affected_rows($link);
 }
-
-function update_kategori($data)
+function rekap_update($data)
 {
   global $link;
-  $id = $data['id_kategori'];
-  $nama = $data['kategori'];
+  $id = $data['id_rekap'];
+  $tanggal = $data['tanggal'];
+  $jumlah = $data['jumlah'];
 
-  // cek data kategori
-  $cek_data = tampil("SELECT * FROM kategori WHERE nama = '$nama'");
-  if (!empty($cek_data)) {
-    echo "<script>
-     alert('Data Nama Kategori Sudah Ada');
-     document.location.href = 'index.php';
-    </script>
-    ";
-    return false;
-  }
-  mysqli_query($link, "UPDATE kategori SET
-                      nama = '$nama'
+  mysqli_query($link, "UPDATE rekap SET
+                      tanggal = '$tanggal',
+                      jumlah = $jumlah
                       WHERE id = $id");
 
   return mysqli_affected_rows($link);
 }
-
-function hapus_kategori($data)
+function rekap_hapus($data)
 {
   global $link;
-  $id = $data['id_kategori'];
-  mysqli_query($link, "DELETE FROM kategori WHERE id = $id");
+  $id = $data['id_rekap'];
+  mysqli_query($link, "DELETE FROM rekap WHERE id = $id");
   return mysqli_affected_rows($link);
 }
-// end CRUD <----------------------------
-
-
+// end rekap<------------------------
+//   SELECT tanggal, SUM(jumlah) AS jumlah FROM `rekap`
+// GROUP BY YEARWEEK(tanggal)
 
 // helper ---------------------------->
 function minggu()
