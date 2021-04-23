@@ -108,8 +108,9 @@ include '../../tampleting/navbar-sidebar.php';
                                             </p>
                                             <br />
                                             <form method="post">
+                                            
                                                 <input type="hidden" name="id_ayam" value="<?= $d['id'] ?>">
-                                                <input type="date" name="tanggal" class="form-control" required>
+                                                <input type="date" name="tanggal" class="form-control" required value="<?= date('2019-01-01') ?>">
                                                 <br />
                                                 <input type="number" name="jumlah" class="form-control" placeholder=" Masukkan Jumlah" required>
                                                 <br />
