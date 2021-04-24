@@ -96,22 +96,25 @@ function ayam_hapus($data)
 // rekap------------------------>
 function rekap_tambah($data)
 {
+  
   global $link;
-  $id = $data['id_ayam'];
+  $id_ayam = $data['id_ayam'];
+  $id_kandang = $data['id_kandang'];
   $tanggal = $data['tanggal'];
   $jumlah = $data['jumlah'];
-
-  mysqli_query($link, "INSERT INTO rekap VALUES ('','$id','$tanggal','$jumlah')");
+  mysqli_query($link, "INSERT INTO rekap VALUES ('','$id_ayam','$id_kandang','$tanggal','$jumlah')");
   return mysqli_affected_rows($link);
 }
 function rekap_update($data)
 {
   global $link;
   $id = $data['id_rekap'];
+  $id_kandang = $data['id_kandang'];
   $tanggal = $data['tanggal'];
   $jumlah = $data['jumlah'];
 
   mysqli_query($link, "UPDATE rekap SET
+                      kandang_id = '$id_kandang',
                       tanggal = '$tanggal',
                       jumlah = $jumlah
                       WHERE id = $id");

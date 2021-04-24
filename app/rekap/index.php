@@ -2,10 +2,12 @@
 include_once '../../functions/functions.php';
 
 $data_ayam = tampil("SELECT * FROM `ayam` ORDER BY `ayam`.`id` DESC"); // Data Ayam
-
-$data = tampil("SELECT rekap.id,ayam.nama_ayam, rekap.tanggal, rekap.jumlah 
-                FROM `rekap`  LEFT JOIN ayam ON rekap.ayam_id = ayam.id  
-                ORDER BY `rekap`.`id`  DESC"); // Data Rekap
+$kandang  = tampil("SELECT * FROM `kandang` ORDER BY `kandang`.`kandang` ASC"); // Data Ayam
+$data = tampil("SELECT rekap.id,ayam.nama_ayam, rekap.kandang_id ,kandang.kandang, rekap.tanggal, rekap.jumlah
+                FROM `rekap`
+                LEFT JOIN ayam ON rekap.ayam_id = ayam.id
+                LEFT JOIN kandang ON rekap.kandang_id = kandang.id 
+                ORDER BY `rekap`.`id` DESC"); // Data Rekap
 
 if (isset($_POST['tambah_rekap'])) {
     if (rekap_tambah($_POST)) {
@@ -103,12 +105,29 @@ include '../../tampleting/navbar-sidebar.php';
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>
-                                                <?= $d['nama_ayam'] ?> <br />
-                                            </p>
+                                          
                                             <br />
                                             <form method="post">
-                                            
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                     <p>
+                                                         <?= $d['nama_ayam'] ?> <br />
+                                                    </p>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                     <select name="id_kandang" class="form-control input-sm" required>
+                                                        <option value="">-- Pilih Kandang --</option>
+                                                    <?php
+                                                        foreach($kandang as $k){
+                                                    ?>
+                                                         <option value="<?= $k['id'] ?>"><?= $k['kandang'] ?></option>
+                                                         <?php
+                                                        }
+                                                    ?>
+									            </select>
+                                                </div>
+                                            </div>
+                                                <br/>
                                                 <input type="hidden" name="id_ayam" value="<?= $d['id'] ?>">
                                                 <input type="date" name="tanggal" class="form-control" required value="<?= date('2019-01-01') ?>">
                                                 <br />
@@ -148,7 +167,8 @@ include '../../tampleting/navbar-sidebar.php';
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Nama</th>
+                            <th>Ayam</th>
+                            <th>Kandang</th>
                             <th>Tanggal</th>
                             <th>Jumlah</th>
                             <th>Aksi</th>
@@ -162,6 +182,7 @@ include '../../tampleting/navbar-sidebar.php';
                             <tr>
                                 <td><?= $no++ ?></td>
                                 <td><?= $d['nama_ayam'] ?></td>
+                                <td><?= $d['kandang'] ?></td>
                                 <td><?= $d['tanggal'] ?></td>
                                 <td><?= $d['jumlah'] ?></td>
                                 <td>
@@ -184,12 +205,36 @@ include '../../tampleting/navbar-sidebar.php';
                                         </div>
 
                                         <div class="modal-body">
-                                            <p>
-                                                <?= $d['nama_ayam'] ?> <br />
-                                            </p>
-                                            <br />
                                             <form method="post">
                                                 <input type="hidden" name="id_rekap" value="<?= $d['id'] ?>">
+
+                                                 <div class="row">
+                                                        <div class="col-sm-2">
+                                                            <p>
+                                                                <?= $d['nama_ayam'] ?> <br />
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <select name="id_kandang" class="form-control input-sm" required>
+                                                                <option value="">-- Pilih Kandang --</option>
+                                                                    <?php
+                                                                        foreach($kandang as $k){
+                                                                    ?>
+                                                                        <option value="<?= $k['id'] ?>" 
+                                                                            <?php
+                                                                                if($k['id'] ==  $d['kandang_id'] ){
+                                                                                    echo "selected";
+                                                                                }
+
+                                                                            ?>
+                                                                        > <?= $k['kandang'] ?></option>
+                                                                        <?php
+                                                                        }
+                                                                    ?>
+                                                             </select>
+                                                        </div>
+                                                 </div>
+                                                <br/>
                                                 <input type="date" name="tanggal" class="form-control" value="<?= $d['tanggal'] ?>" required>
                                                 <br />
                                                 <input type="number" name="jumlah" class="form-control" placeholder=" Masukkan Jumlah" value="<?= $d['jumlah'] ?>" required>
