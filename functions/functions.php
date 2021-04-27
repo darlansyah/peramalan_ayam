@@ -133,6 +133,38 @@ function rekap_hapus($data)
 // GROUP BY YEARWEEK(tanggal)
 
 // helper ---------------------------->
+// helper ayam
+function sortDate($tanggal)  // min dan max tanggal
+{
+  // $tgl = [];
+  $hari = [
+    'Monday'    => ['senin', 0],
+    'Tuesday'   => ['selasa', 1],
+    'Wednesday' => ['rabu', 2],
+    'Thursday'  => ['kamis', 3],
+    'Friday'    => ['jumat', 4],
+    'Saturday'  => ['sabtu', 5],
+    'Sunday'    => ['minggu', 6]
+  ];
+  // end hari
+  $timestamp = strtotime($tanggal);
+  $hari_tanggal = date("l", $timestamp);
+  foreach ($hari as $key => $value) {
+    if ($key  == $hari_tanggal) {
+      $tgl_min = date('Y-m-d', strtotime("-$value[1] days", strtotime($tanggal)));
+      // $tgl['min'] = $tgl_min;
+      $tgl_max = date('Y-m-d', strtotime("+6 days", strtotime($tgl_min)));
+      // $tgl['max'] = $tgl_max;
+    }
+  }
+  return $tgl_min . " - " . $tgl_max;
+}
+// end helper ayam
+
+
+
+
+// 
 function minggu()
 {
   $minggu = [

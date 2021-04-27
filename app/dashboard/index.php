@@ -1,5 +1,6 @@
 <?php
 include_once '../../functions/functions.php';
+
 // cek auth
 $data = tampil("SELECT rekap.id,ayam.nama_ayam, kandang.kandang, rekap.tanggal, rekap.jumlah 
                 FROM `rekap` 

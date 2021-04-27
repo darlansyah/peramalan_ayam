@@ -78,6 +78,7 @@ include '../../tampleting/navbar-sidebar.php';
             <th>Trend</th>
             <th>Level</th>
             <th>Peramalan</th>
+            <th>MAD</th>
             <th>MAPE %</th>
           </tr>
         </thead>
@@ -92,6 +93,7 @@ include '../../tampleting/navbar-sidebar.php';
               <td> <?= $peramalan[$i]['trend'] ?> </td>
               <td> <?= $peramalan[$i]['level'] ?> </td>
               <td> <?= $peramalan[$i]['peramalan'] ?> </td>
+              <td> <?= $peramalan[$i]['absError'] ?> </td>
               <td> <?= $peramalan[$i]['perError'] ?> </td>
             </tr>
           <?php endfor; ?>

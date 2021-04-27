@@ -20,7 +20,7 @@ function des_holt($data, $periode = 1)
       $tr1 = $data[1]['total'] - $data[0]['total']; //  trend 1
 
       $param[] = [
-        'periode' => $data[0]['tanggal'],
+        'periode' => sortDate($data[0]['tanggal']),
         'data_aktual' => number_format($data[0]['total'], 2, '.', ''),
         'level' => $lv1,
         'trend' => $tr1,
@@ -52,7 +52,7 @@ function des_holt($data, $periode = 1)
         $jumPerError = $jumPerError + $perError; // jumlah mape
 
         $param[] = [
-          'periode' => $data[$i]['tanggal'],
+          'periode' => sortDate($data[$i]['tanggal']),
           'data_aktual' => number_format($data[$i]['total'], 2, '.', ''),
           'level' => $lvn,
           'trend' => $trn,
