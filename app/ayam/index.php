@@ -1,5 +1,10 @@
 <?php
 include_once '../../functions/functions.php';
+// cek auth
+if (empty($_SESSION['level'])) {
+    header('location:../auth/index.php');
+}
+// end cek auth
 
 $data = tampil("SELECT * FROM `ayam` ORDER BY `ayam`.`id` DESC"); // Data Ayam
 $kandang = tampil("SELECT * FROM `kandang` ORDER BY `kandang`.`kandang` ASC"); // Data Ayam
@@ -72,7 +77,7 @@ include '../../tampleting/navbar-sidebar.php';
                 <h3 class="panel-title">Daftar Ayam</h3>
             </div>
             <div class="panel-body">
-             <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#tambah_ayam"><i class="lnr lnr-file-add"></i> Tambah</button>
+                <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#tambah_ayam"><i class="lnr lnr-file-add"></i> Tambah</button>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -90,7 +95,7 @@ include '../../tampleting/navbar-sidebar.php';
                                 <td><?= $no++ ?></td>
                                 <td><?= $d['nama_ayam'] ?></td>
                                 <td>
-                                 <button type="submit" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#edit<?= $d['id'] ?>"><i class="lnr lnr-pencil"></i> Edit</button>
+                                    <button type="submit" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#edit<?= $d['id'] ?>"><i class="lnr lnr-pencil"></i> Edit</button>
                                     <form method="post" style="display: inline">
                                         <input type="hidden" name="id_ayam" value="<?= $d['id'] ?>">
                                         <button type="submit" name="hapus" onclick="return confirm('Apakah Data Ingin Dihapus?')" class="btn btn-danger btn-xs">Hapus</button>
@@ -157,7 +162,7 @@ include '../../tampleting/navbar-sidebar.php';
                                 <td><?= $no++ ?></td>
                                 <td><?= $d['kandang'] ?></td>
                                 <td>
-                                   <a href="#" class="btn btn-info btn-xs">Datail</button>
+                                    <a href="#" class="btn btn-info btn-xs">Datail</button>
                                 </td>
                             </tr>
                         <?php
@@ -176,26 +181,26 @@ include '../../tampleting/navbar-sidebar.php';
 
 <!--  Modal  -->
 <div class="modal fade" id="tambah_ayam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Tambah Rekap</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form method="post">
-                                                <input class="form-control" name="ayam" placeholder="Masukkan Nama Ayam" type="text" required>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary btn-xs" name="tambah">Submit</button>
-                                        </div>
-                                        </form>
-                                    </div>
-                                </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Rekap</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <input class="form-control" name="ayam" placeholder="Masukkan Nama Ayam" type="text" required>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary btn-xs" name="tambah">Submit</button>
+            </div>
+            </form>
+        </div>
     </div>
+</div>
 <?php
 include '../../tampleting/footer.php';
 include '../../tampleting/html_end.php';

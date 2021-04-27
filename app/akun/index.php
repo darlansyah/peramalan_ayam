@@ -1,5 +1,11 @@
 <?php
 include_once '../../functions/functions.php';
+// cek auth
+if (empty($_SESSION['level'])) {
+    header('location:../auth/index.php');
+}
+// end cek auth
+
 $data = tampil("SELECT * FROM `akun` ORDER BY `akun`.`nama` ASC"); // Data Rekap
 
 if (isset($_POST['tambah_akun'])) {

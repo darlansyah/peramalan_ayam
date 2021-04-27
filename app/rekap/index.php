@@ -1,5 +1,10 @@
 <?php
 include_once '../../functions/functions.php';
+// cek auth
+if (empty($_SESSION['level'])) {
+    header('location:../auth/index.php');
+}
+// end cek auth
 
 $data_ayam = tampil("SELECT * FROM `ayam` ORDER BY `ayam`.`id` DESC"); // Data Ayam
 $kandang  = tampil("SELECT * FROM `kandang` ORDER BY `kandang`.`kandang` ASC"); // Data Ayam
@@ -105,29 +110,29 @@ include '../../tampleting/navbar-sidebar.php';
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                          
+
                                             <br />
                                             <form method="post">
-                                            <div class="row">
-                                                <div class="col-sm-2">
-                                                     <p>
-                                                         <?= $d['nama_ayam'] ?> <br />
-                                                    </p>
+                                                <div class="row">
+                                                    <div class="col-sm-2">
+                                                        <p>
+                                                            <?= $d['nama_ayam'] ?> <br />
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-sm-10">
+                                                        <select name="id_kandang" class="form-control input-sm" required>
+                                                            <option value="">-- Pilih Kandang --</option>
+                                                            <?php
+                                                            foreach ($kandang as $k) {
+                                                            ?>
+                                                                <option value="<?= $k['id'] ?>"><?= $k['kandang'] ?></option>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                                <div class="col-sm-10">
-                                                     <select name="id_kandang" class="form-control input-sm" required>
-                                                        <option value="">-- Pilih Kandang --</option>
-                                                    <?php
-                                                        foreach($kandang as $k){
-                                                    ?>
-                                                         <option value="<?= $k['id'] ?>"><?= $k['kandang'] ?></option>
-                                                         <?php
-                                                        }
-                                                    ?>
-									            </select>
-                                                </div>
-                                            </div>
-                                                <br/>
+                                                <br />
                                                 <input type="hidden" name="id_ayam" value="<?= $d['id'] ?>">
                                                 <input type="date" name="tanggal" class="form-control" required value="<?= date('2019-01-01') ?>">
                                                 <br />
@@ -208,33 +213,31 @@ include '../../tampleting/navbar-sidebar.php';
                                             <form method="post">
                                                 <input type="hidden" name="id_rekap" value="<?= $d['id'] ?>">
 
-                                                 <div class="row">
-                                                        <div class="col-sm-2">
-                                                            <p>
-                                                                <?= $d['nama_ayam'] ?> <br />
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-10">
-                                                            <select name="id_kandang" class="form-control input-sm" required>
-                                                                <option value="">-- Pilih Kandang --</option>
-                                                                    <?php
-                                                                        foreach($kandang as $k){
-                                                                    ?>
-                                                                        <option value="<?= $k['id'] ?>" 
-                                                                            <?php
-                                                                                if($k['id'] ==  $d['kandang_id'] ){
-                                                                                    echo "selected";
-                                                                                }
+                                                <div class="row">
+                                                    <div class="col-sm-2">
+                                                        <p>
+                                                            <?= $d['nama_ayam'] ?> <br />
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-sm-10">
+                                                        <select name="id_kandang" class="form-control input-sm" required>
+                                                            <option value="">-- Pilih Kandang --</option>
+                                                            <?php
+                                                            foreach ($kandang as $k) {
+                                                            ?>
+                                                                <option value="<?= $k['id'] ?>" <?php
+                                                                                                if ($k['id'] ==  $d['kandang_id']) {
+                                                                                                    echo "selected";
+                                                                                                }
 
-                                                                            ?>
-                                                                        > <?= $k['kandang'] ?></option>
-                                                                        <?php
-                                                                        }
-                                                                    ?>
-                                                             </select>
-                                                        </div>
-                                                 </div>
-                                                <br/>
+                                                                                                ?>> <?= $k['kandang'] ?></option>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <br />
                                                 <input type="date" name="tanggal" class="form-control" value="<?= $d['tanggal'] ?>" required>
                                                 <br />
                                                 <input type="number" name="jumlah" class="form-control" placeholder=" Masukkan Jumlah" value="<?= $d['jumlah'] ?>" required>

@@ -1,5 +1,10 @@
 <?php
 include_once '../../functions/functions.php';
+// cek auth
+if (empty($_SESSION['level'])) {
+    header('location:../auth/index.php');
+}
+// end cek auth
 
 
 $title = "Dashboard | Peramalan Ayam";

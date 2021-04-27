@@ -3,7 +3,7 @@
 // Peramalan Ayam
 // Metode Double Expondensial Smotting Holt
 session_start();
-error_reporting(0);
+// error_reporting(0);
 //waktu WIB
 date_default_timezone_set('Asia/Jakarta');
 // koneksi database
@@ -96,7 +96,7 @@ function ayam_hapus($data)
 // rekap------------------------>
 function rekap_tambah($data)
 {
-  
+
   global $link;
   $id_ayam = $data['id_ayam'];
   $id_kandang = $data['id_kandang'];
@@ -192,7 +192,7 @@ function waktu_login($id, $waktu)
 {
   global $link;
 
-  $query = "UPDATE pengguna SET
+  $query = "UPDATE akun SET
             waktu_login = '$waktu'
             WHERE id = $id";
 
@@ -204,7 +204,7 @@ function waktu_login($id, $waktu)
 function waktu_logout($id, $waktu)
 {
   global $link;
-  $query = "UPDATE pengguna SET
+  $query = "UPDATE akun SET
             waktu_logout = '$waktu'
             WHERE id = $id";
 
