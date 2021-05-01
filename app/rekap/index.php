@@ -93,7 +93,7 @@ include '../../tampleting/navbar-sidebar.php';
                                 <td><?= $d['nama_ayam'] ?></td>
                                 <td>
                                     <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#tambah_rekap<?= $d['id'] ?>"><i class="lnr lnr-file-add"></i> Tambah</button>
-                                    <form action="detail.php" method="GET" style="display: inline">
+                                    <form action="detail_ayam.php" method="GET" style="display: inline">
                                         <input type="hidden" name="id_ayam" value="<?= $d['id'] ?>">
                                         <button type="submit" class="btn btn-info btn-xs">Detail</button>
                                     </form>
