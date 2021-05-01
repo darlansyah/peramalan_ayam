@@ -3,7 +3,7 @@
 // Peramalan Ayam
 // Metode Double Expondensial Smotting Holt
 session_start();
-// error_reporting(0);
+error_reporting(0);
 //waktu WIB
 date_default_timezone_set('Asia/Jakarta');
 // koneksi database

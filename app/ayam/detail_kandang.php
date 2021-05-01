@@ -6,20 +6,20 @@ if (empty($_SESSION['level'])) {
 }
 // end cek auth
 
-$id_ayam = $_GET['id_ayam'];
-$ayam = tampil("SELECT ayam.nama_ayam FROM ayam WHERE id = $id_ayam")[0];
-$rekap_ayam = tampil("SELECT ayam.nama_ayam,rekap.tanggal, kandang.kandang, rekap.jumlah
+$id_kadang = $_GET['id_kandang'];
+$kandang = tampil("SELECT kandang FROM kandang WHERE id = $id_kadang")[0];
+$rekap_kandang = tampil("SELECT ayam.nama_ayam,rekap.tanggal, kandang.kandang, rekap.jumlah
  FROM rekap 
  LEFT JOIN ayam ON rekap.ayam_id = ayam.id 
  LEFT JOIN kandang ON rekap.kandang_id = kandang.id 
- WHERE ayam.id = $id_ayam
+ WHERE kandang.id = $id_kadang
 ORDER BY `rekap`.`tanggal` DESC
  ");
 
 
-$title = "Rekap Perayam| Peramalan Ayam";
+$title = "Rekap Perkandang| Peramalan Ayam";
 include '../../tampleting/html_head.php';
-$a_rekap = true;
+$a_ayam = true;
 include '../../tampleting/navbar-sidebar.php';
 ?>
 
@@ -27,7 +27,7 @@ include '../../tampleting/navbar-sidebar.php';
     <!-- TABLE HOVER -->
     <div class="panel">
         <div class="panel-heading">
-            <h3><?= $ayam['nama_ayam'] ?></h3>
+            <h3><?= $kandang['kandang'] ?></h3>
             <h3 class="panel-title">Transaksi Penjualan</h3>
         </div>
         <div class="panel-body">
@@ -36,23 +36,25 @@ include '../../tampleting/navbar-sidebar.php';
                     <tr>
                         <th>#</th>
                         <th>Tanggal</th>
-                        <th>Kandang</th>
+                        <th>Ayam</th>
                         <th>Jumlah</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     $no = 1;
-                    foreach ($rekap_ayam as $d) {
+                    foreach ($rekap_kandang as $d) {
                     ?>
                         <tr>
                             <td><?= $no++ ?></td>
                             <td><?= $d['tanggal'] ?></td>
-                            <td><?= $d['kandang'] ?></td>
+                            <td><?= $d['nama_ayam'] ?></td>
                             <td><?= $d['jumlah'] ?></td>
-                        </tr <?php
-                            }
-                                ?>>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+
                 </tbody>
             </table>
         </div>

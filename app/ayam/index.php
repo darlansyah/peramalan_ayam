@@ -162,7 +162,7 @@ include '../../tampleting/navbar-sidebar.php';
                                 <td><?= $no++ ?></td>
                                 <td><?= $d['kandang'] ?></td>
                                 <td>
-                                    <a href="#" class="btn btn-info btn-xs">Datail</button>
+                                    <a href="detail_kandang.php?id_kandang=<?= $d['id'] ?>" class="btn btn-info btn-xs">Datail</button>
                                 </td>
                             </tr>
                         <?php
