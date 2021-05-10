@@ -1,6 +1,7 @@
 <?php
 include_once '../../functions/functions.php';
 include_once '../../functions/function_metode.php';
+
 // cek auth
 if (empty($_SESSION['level'])) {
   header('location:../auth/index.php');
@@ -15,8 +16,8 @@ $data = tampil("SELECT tanggal, SUM(jumlah) AS total
 
 $jumData = count($data);
 $peramalan = des_holt($data);
-// var_dump($peramalan[$jumData]);
-// die;
+
+$grafik = grafik($peramalan);
 
 $title = "Dashboard | Peramalan Ayam";
 include '../../tampleting/html_head.php';
@@ -103,6 +104,14 @@ include '../../tampleting/navbar-sidebar.php';
   </div>
 </div>
 
+<div class="row">
+  <div class="col-md-12">
+    <div id='myDiv'>
+      <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+  </div>
+</div>
+
 <?php
 include '../../tampleting/footer.php';
 ?>
@@ -114,7 +123,7 @@ include '../../tampleting/footer.php';
 <script src="../../assets/vendor/chartist/js/chartist.min.js"></script>
 <script src="../../assets/scripts/klorofil-common.js"></script>
 
-
+<script src="../../assets/datatable/jquery.dataTables.min.js"></script>
 <script>
   $(function() {
     // real-time pie chart
@@ -131,4 +140,47 @@ include '../../tampleting/footer.php';
     });
 
   });
+
+
+  // Plotly
+  var trace1 = {
+    x: <?= $grafik['x'] ?>,
+    y: <?= $grafik['y_aktual'] ?>,
+    mode: 'lines+markers',
+    name: 'Aktual',
+    marker: {
+      size: 5
+    },
+    line: {
+      shape: 'spline',
+      width: 2,
+      color: '#777'
+    },
+    type: 'scatter'
+  };
+
+  var trace2 = {
+    x: <?= $grafik['x'] ?>,
+    y: <?= $grafik['y_peramalan'] ?>,
+    mode: 'lines+markers',
+    name: 'DES Holt',
+    marker: {
+      size: 5
+    },
+    line: {
+      shape: 'spline',
+      color: '#337ab7',
+      width: 1
+    },
+
+    type: 'scatter'
+  };
+
+  var layout = {
+    title: 'Visualisasi Data'
+  };
+
+  var data = [trace1, trace2];
+
+  Plotly.newPlot('myDiv', data, layout);
 </script>
