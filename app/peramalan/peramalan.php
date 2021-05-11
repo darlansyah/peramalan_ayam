@@ -141,6 +141,22 @@ include '../../tampleting/footer.php';
 
   });
 
+  // dataTables
+  $(document).ready(function() {
+    $('#peramalan').DataTable({
+      "info": false,
+      stateSave: true,
+      "ordering": false,
+      "pagingType": 'full',
+      "lengthMenu": [
+        [10, 25, 50, 100, -1],
+        [10, 25, 50, 100, "All"]
+      ],
+      // 'iDisplayLength': 100,
+      order: []
+    });
+  });
+
 
   // Plotly
   var trace1 = {

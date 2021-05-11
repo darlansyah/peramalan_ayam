@@ -31,7 +31,7 @@ include '../../tampleting/navbar-sidebar.php';
             <h3 class="panel-title">Transaksi Penjualan</h3>
         </div>
         <div class="panel-body">
-            <table class="table table-hover">
+            <table id="peramalan" class="table table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -65,5 +65,30 @@ include '../../tampleting/navbar-sidebar.php';
 
 <?php
 include '../../tampleting/footer.php';
-include '../../tampleting/html_end.php';
 ?>
+<!-- Javascript -->
+<script src="../../assets/vendor/jquery/jquery.min.js"></script>
+<script src="../../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="../../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+<script src="../../assets/vendor/chartist/js/chartist.min.js"></script>
+<script src="../../assets/scripts/klorofil-common.js"></script>
+
+<script src="../../assets/datatable/jquery.dataTables.min.js"></script>
+
+<script>
+    // dataTables
+    $(document).ready(function() {
+        $('#peramalan').DataTable({
+            "info": false,
+            stateSave: true,
+            "ordering": false,
+            "pagingType": 'full',
+            "lengthMenu": [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"]
+            ],
+            order: []
+        });
+    });
+</script>

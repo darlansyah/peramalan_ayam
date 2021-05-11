@@ -12,7 +12,7 @@ $data = tampil("SELECT rekap.id,ayam.nama_ayam, rekap.kandang_id ,kandang.kandan
                 FROM `rekap`
                 LEFT JOIN ayam ON rekap.ayam_id = ayam.id
                 LEFT JOIN kandang ON rekap.kandang_id = kandang.id 
-                ORDER BY `rekap`.`id` DESC"); // Data Rekap
+                ORDER BY `rekap`.`id` DESC LIMIT 100"); // Data Rekap
 
 if (isset($_POST['tambah_rekap'])) {
     if (rekap_tambah($_POST)) {
@@ -165,7 +165,7 @@ include '../../tampleting/navbar-sidebar.php';
         <!-- TABLE HOVER -->
         <div class="panel">
             <div class="panel-heading">
-                <h3 class="panel-title">Daftar Rekap</h3>
+                <h3 class="panel-title">100 Daftar Rekap Terakhir </h3>
             </div>
             <div class="panel-body">
                 <table class="table table-hover">
@@ -267,5 +267,11 @@ include '../../tampleting/navbar-sidebar.php';
 
 <?php
 include '../../tampleting/footer.php';
-include '../../tampleting/html_end.php';
 ?>
+<!-- Javascript -->
+<script src="../../assets/vendor/jquery/jquery.min.js"></script>
+<script src="../../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="../../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+<script src="../../assets/vendor/chartist/js/chartist.min.js"></script>
+<script src="../../assets/scripts/klorofil-common.js"></script>
