@@ -41,4 +41,8 @@ $a_rekap = false;
 		}
 	</style>
 
+
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css">
+
 </head>
