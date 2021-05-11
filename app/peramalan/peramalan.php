@@ -91,11 +91,11 @@ include '../../tampleting/navbar-sidebar.php';
               <td> <?= $no++ ?> </td>
               <td> <?= $peramalan[$i]['periode'] ?> </td>
               <td> <?= $peramalan[$i]['data_aktual'] ?> </td>
-              <td> <?= $peramalan[$i]['trend'] ?> </td>
-              <td> <?= $peramalan[$i]['level'] ?> </td>
-              <td> <?= $peramalan[$i]['peramalan'] ?> </td>
-              <td> <?= $peramalan[$i]['absError'] ?> </td>
-              <td> <?= $peramalan[$i]['perError'] ?> </td>
+              <td> <?= number_format($peramalan[$i]['trend'], 2, '.', '') ?> </td>
+              <td> <?= number_format($peramalan[$i]['level'], 2, '.', '') ?> </td>
+              <td> <?= number_format($peramalan[$i]['peramalan'], 2, '.', '') ?> </td>
+              <td> <?= number_format($peramalan[$i]['absError'], 2, '.', '') ?> </td>
+              <td> <?= number_format($peramalan[$i]['perError'], 2, '.', '') ?> </td>
             </tr>
           <?php endfor; ?>
         </tbody>
