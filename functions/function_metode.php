@@ -122,8 +122,8 @@ function grafik($data)
   }
 
   $x = $x . "'" . $data[count($data) - 3]['periode'] . "']";
-  $y_aktual = $y_aktual . "'" . $data[count($data) - 3]['data_aktual'] . "']";
-  $y_peramalan = $y_peramalan . "'" . $data[count($data) - 3]['peramalan'] . "']";
+  $y_aktual = $y_aktual . "'" . number_format($data[count($data) - 3]['data_aktual'], 2, '.', '') . "']";
+  $y_peramalan = $y_peramalan . "'" . number_format($data[count($data) - 3]['peramalan'], 2, '.', '') . "']";
 
   // var_dump($x );
   // die;
